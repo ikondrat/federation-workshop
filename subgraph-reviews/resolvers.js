@@ -16,4 +16,19 @@ export default {
       };
     },
   },
+  Review: {
+    location(review, _args, _ctx, _info) {
+      return {
+        id: review.locationId
+      };
+    }
+  },
+  Location: {
+  overallRating: (location, _, { dataSources }) => {
+    return dataSources.reviewsAPI.getOverallRatingForLocation(location.id);
+  },
+  reviews: (location, _, { dataSources }) => {
+    return dataSources.reviewsAPI.getReviewsForLocation(location.id);
+  },
+},
 };
